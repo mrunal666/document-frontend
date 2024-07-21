@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Document({ doc, handleSetParentId, children, setChildren }) {
+function Document({ doc, handleSetParentId }) {
   const [showForm, setShowForm] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [children, setChildren] = useState(doc.children || []);
 
   const addSubDocument = () => {
     axios
@@ -79,8 +80,6 @@ function Document({ doc, handleSetParentId, children, setChildren }) {
               key={child._id}
               doc={child}
               handleSetParentId={handleSetParentId}
-              children={children}
-              setChildren={setChildren}
             />
           ))}
         </div>

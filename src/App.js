@@ -18,8 +18,6 @@ function App() {
   const [parentId, setParentId] = useState("");
   const [content, setContent] = useState("");
   const [showBtn, setShowBtn] = useState(false);
-  const [children, setChildren] = useState([]);
-
   useEffect(() => {
     const editorInstance = new EditorJS({
       holder: "editor",
@@ -110,9 +108,6 @@ function App() {
         } else {
           setDocs([...docs, response.data]);
         }
-        if (parentId) {
-          setChildren([...children, response.data]);
-        }
         setTitle("");
         setParentId("");
         editor.clear(); // Clear the editor content
@@ -188,8 +183,6 @@ function App() {
             key={doc._id}
             doc={doc}
             handleSetParentId={handleSetParentId}
-            children={children}
-            setChildren={setChildren}
           />
         ))}
       </div>
